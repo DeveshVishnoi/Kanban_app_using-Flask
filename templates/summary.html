@@ -1,0 +1,77 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summary</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/static/sum.css" />
+    <style>
+      .container {
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="nav" href="/{{user.user_id}}/dashboard">
+        Welcome {{user.username}},
+      </a>
+
+      <a href="/signout"
+        ><button class="btn success">
+          <i class="fa fa-sign-out" style="font-size: 20px gap"></i>Sign Out
+        </button></a
+      >
+      <a href="/{{user.user_id}}/dashboard"
+        ><button class="btn info">Dashboard</button></a
+      >
+    </div>
+
+    <div class="container">
+      {% for i in range(data|length) %}
+
+      <div class="box">
+        <p
+          style="
+            margin-top: 2px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+          "
+        >
+          {{list[i]}}
+        </p>
+        <div class="sbox">
+          {% set point = 0 -%} {% set point = point + data[i][0] + data[i][1]
+          -%}
+          <p style="padding: 5px; font-weight: bold">
+            Complete : {{data[i][0]}} / {{point}}
+          </p>
+          <p style="padding: 5px; font-weight: bold; padding-top: 5px">
+            Incomplete : {{data[i][1]}} / {{point}}
+          </p>
+        </div>
+        <div style="margin-top: 10px" class="tbox">
+          <img style="width: 450px; height: 333px" src="{{ images[i] }}" />
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

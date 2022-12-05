@@ -1,0 +1,389 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/static/dashboard.css" />
+    <!-- styling is not our concern -->
+    <style>
+      .top {
+        align-items: center;
+      }
+      .dropdown {
+        overflow: hidden;
+        background-color: #eee8f4;
+        position: relative;
+      }
+      .dropdown #dropdown-content {
+        display: none;
+      }
+      .dropdown #dropdown-desc {
+        display: none;
+      }
+
+      .dropdown a {
+        color: Black;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+      }
+      .dropdown a.icon {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 80px;
+        width: 80px;
+        cursor: pointer;
+      }
+      .fa-bars {
+        padding-right: 5px;
+        float: right;
+      }
+      .dropdown a:hover {
+        /* background-color: ; */
+        color: #333;
+      }
+
+      .active {
+        /* background-color: #04aa6d; */
+        color: black;
+        font-weight: bold;
+        padding: 14px 16px;
+        font-size: 20px;
+      }
+      .drop:hover #dropdown-content {
+        display: flex;
+      }
+      .active:hover #dropdown-desc {
+        display: flex;
+      }
+      .comp {
+        display: flex;
+        border: 1px solid black;
+        width: fit-content;
+        border-radius: 15px;
+        background-color: lightgray;
+        padding: 5px;
+      }
+      .container {
+        width: fit-content;
+      }
+      .red {
+        font-size: 15px;
+      }
+      .fa-exclamation {
+        margin-right: 5px;
+        margin-top: 2px;
+      }
+      .fa-check {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <div class="alert">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        {{message}}
+      </div>
+
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
+    <div class="topnav">
+      <a class="nav" href="/">Welcome {{user}} </a>
+
+      <a href="/signout"
+        ><button
+          style="font-weight: bold; font-size: 15px; gap: px"
+          class="btn success"
+        >
+          <i class="fa fa-sign-out" style="font-size: 20px gap"></i>Sign Out
+        </button></a
+      >
+      <a href="/{{user_id}}/summary"
+        ><button style="font-weight: bold" class="btn info">Summary</button></a
+      >
+    </div>
+
+    <div class="container">
+      {% for task in tasks %}
+
+      <div class="box">
+        <div class="dropdown">
+          <!-- <a class="active">{{task.title}}</a> -->
+          <div class="active">
+            {{task.title}}
+            <div id="dropdown-desc">
+              <p>
+                <button class="dbut">{{task.desc}}</button>
+              </p>
+            </div>
+          </div>
+          <div class="drop">
+            <a class="icon">
+              <i class="fa fa-bars"></i>
+            </a>
+
+            <div id="dropdown-content">
+              <a
+                style="float: left"
+                href="/{{user_id}}/{{task['list_id']}}/edit"
+                ><button class="butt">Edit</button></a
+              >
+              <a
+                style="float: right"
+                href="/{{user_id}}/{{task['list_id']}}/delete"
+                ><button class="butt">Delete</button></a
+              >
+            </div>
+
+            <!-- <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+              <i class="fa fa-bars"></i>
+            </a> -->
+          </div>
+        </div>
+        <div class="scroll">
+          {% for card in cd %} {% if card['list_id'] == task['list_id'] %}
+
+          <div style="max-height: fit-content" class="card">
+            <h3 class="chead">{{card['card_title']}}</h3>
+            <h5 style="padding: 10px">{{card['card_desc']}}</h5>
+            <p class="allbtn">
+              <a
+                href="/{{user_id}}/{{task['list_id']}}/{{card['card_id']}}/edit"
+                ><button style="background-color: #add794" class="del">
+                  <!-- d4edda -->
+                  Edit
+                </button></a
+              >
+              <a
+                href="/{{user_id}}/{{task['list_id']}}/{{card['card_id']}}/delete"
+              >
+                <button
+                  style="background-color: #f5b7b1; border-color: #f5c6cb"
+                  class="del"
+                >
+                  Delete
+                </button>
+              </a>
+            </p>
+            <div class="dead">
+              {% if card['completed'] == 'Complete' %}
+              <p style="margin-left: 10px" class="green">
+                <i class="fa fa-check" style="color: green"></i>
+                {{card['completed']}}
+              </p>
+              {% else %}
+              <p style="margin-left: 10px; gap: 1px" class="red">
+                <!-- <p style="margin-left: 10px" class="red"> -->
+                <i class="fa fa-exclamation" style="color: red"></i
+                >{{card['completed']}}
+              </p>
+              {% endif %}
+
+              <p style="gap: 5px" class="comp">
+                <i class="fa fa-clock-o"></i>{{card['deadline']}}
+              </p>
+            </div>
+          </div>
+          {% endif %} {% endfor %}
+          <div class="addcard">
+            <a href="/{{user_id}}/{{task['list_id']}}/addcard"
+              ><button class="add">+ Add Card</button></a
+            >
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+
+      <div style="align-items: center; padding-left: 60px">
+        <button
+          class="dev"
+          style="
+            margin-right: 10px;
+            margin-top: 300px;
+            /* border: none; */
+            height: 40px;
+            min-width: 100px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            padding: 0px;
+            flex-direction: row;
+            background-color: #674fa3;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+          "
+          onclick="addtask()"
+        >
+          Add List
+        </button>
+      </div>
+      <div
+        style="
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          font-family: 'Jost', sans-serif;
+        "
+      >
+        <div
+          class="add_task"
+          style="
+            width: 350px;
+            height: 400px;
+            padding: 20px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #dff9fb;
+            box-shadow: 5px 20px 50px rgba(0, 0, 0);
+            display: none;
+          "
+        >
+          <h2 style="font-size: 30px">Create A New List....</h2>
+          <div class="title">
+            <form class="form" action="/{{ user_id }}/dashboard" method="post">
+              <label
+                style="
+                  display: inline-block;
+                  max-width: 100%;
+                  margin-bottom: 5px;
+                  font-weight: 700;
+                "
+                for="chk"
+                aria-hidden="true"
+                >Title</label
+              ><br />
+              <input
+                style="
+                  position: relative;
+                  height: auto;
+
+                  box-sizing: border-box;
+                  padding: 10px;
+                  font-size: 14px;
+                  font-weight: bold;
+                  width: 100%;
+                  outline: none;
+                  border: none;
+                  border-radius: 5px;
+                "
+                type="text"
+                name="task"
+                placeholder="Task Name..."
+                maxlength="20"
+                required
+              />
+              <br />
+              <br />
+              <label style="font-weight: 700" for="chk" aria-hidden="true"
+                >Description</label
+              ><br />
+
+              <textarea
+                style="
+                  margin-top: 2px;
+                  width: 100%;
+                  height: 92px;
+                  border-radius: 5px;
+                  outline: none;
+                  resize: none;
+                  font-weight: bold;
+                  font-size: 15px;
+
+                  border: none;
+                "
+                name="description"
+                id="t"
+                rows=""
+                spellcheck="false"
+                placeholder="Enter description here......
+                "
+                maxlength="100"
+                required
+              >
+              </textarea>
+              <br />
+              <br />
+
+              <!-- <input
+                type="submit"
+                class="btn btn-dark"
+                value="Create"
+                style="position: absolute; left: 200px"
+              /> -->
+              <a href="/{{ user_id }}/dashboard"
+                ><button
+                  style="
+                    width: 100%;
+                    padding: 5px;
+                    border-radius: 5px;
+                    background: #573b8a;
+                    color: #fff;
+                    font-weight: bold;
+                    cursor: pointer;
+                    /* border: none; */
+                    box-shadow: 1px black transparent;
+                  "
+                >
+                  Add List
+                </button></a
+              >
+            </form>
+
+            <!-- <button class="addbtn">Add Task</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let add_task = document.querySelector(".add_task");
+      let dev = document.querySelector(".dev");
+      //
+      let addflag = false;
+      //
+      dev.addEventListener("click", () => {
+        addflag = !addflag;
+        if (addflag) {
+          add_task.style.display = "block";
+          btn.style.display = "";
+        } else {
+          add_task.style.display = "none";
+          dev.style.display = "block";
+        }
+      });
+    </script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/list_confirmation.css" />
+    <style></style>
+  </head>
+
+  <body>
+    <!-- <form action="{{user_id}}/{{list_id}}/{{card_id}}/delete/confirm"> -->
+    <div class="modal">
+      <div class="modalContent">
+        <a href="/{{user_id}}/dashboard"><span class="close">&times;</span> </a>
+        <p>Are you sure you want to delete your List : {{ld['title']}}</p>
+        <a href="/{{user_id}}/{{list_id}}/delete/confirm"
+          ><button type="submit" class="del">Delete</button>
+        </a>
+        <a href="/{{user_id}}/dashboard"
+          ><button class="cancel" onclick="hideModal()">Cancel</button>
+        </a>
+      </div>
+    </div>
+    <!-- </form> -->
+  </body>
+</html>

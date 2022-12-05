@@ -1,0 +1,231 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .simp {
+        align-items: center;
+        border-bottom: 1px solid #dadde1;
+        display: flex;
+        margin: 20px 16px;
+        text-align: center;
+      }
+      .vis {
+        background-color: #42b72a;
+        border-radius: 5px;
+        border: 1px solid;
+        border-radius: 2px;
+        box-sizing: content-box;
+        font-size: 12px;
+        /* -webkit-font-smoothing: antialiased; */
+        font-weight: bold;
+        justify-content: center;
+        padding: 0 8px;
+        position: relative;
+        text-align: center;
+        text-shadow: none;
+        vertical-align: middle;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 17px;
+        line-height: 48px;
+        padding: 0 16px;
+      }
+      .vis:hover {
+        background-color: rgb(17, 145, 17);
+      }
+      h1 {
+        /* text-align: center; */
+        margin: -28px;
+        color: blue;
+        font-size: 70px;
+        font-weight: bold;
+      }
+      h2 {
+        margin: -28px;
+        margin-top: 25px;
+      }
+      .divider:after,
+      .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+      }
+      .h-custom {
+        height: calc(100% - 73px);
+      }
+      @media (max-width: 450px) {
+        .h-custom {
+          height: 100%;
+        }
+      }
+      .dev {
+        align-items: center;
+        background-color: #fff;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+        box-sizing: border-box;
+        margin: 40px 0 0;
+        padding: 20px 0 28px;
+        width: 396px;
+      }
+      input {
+        padding: 10px;
+        margin: 10px;
+      }
+      .vis {
+        background-color: #42b72a;
+      }
+
+      body {
+        background-color: #f0f2f5;
+      }
+      .alert {
+        padding: 10px;
+        /* background-color: ; */
+        font-weight: bold;
+        color: red;
+      }
+
+      .closebtn {
+        margin-left: 15px;
+        color: black;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      input {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>Welcome to Kanban</h1> -->
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <h1 style="text-align: center">Kanban</h1>
+          <h2 style="text-align: center">
+            Kanaban Board is created to trace Your Task
+          </h2>
+          <!-- <h2 style="margin-left: 220px">
+              Kanaban Board is created to trace Your Task
+            </h2> -->
+
+          <div
+            style="margin-top: 20px"
+            class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 dev"
+          >
+            <form
+              style="text-align: center; padding: 10px"
+              id="login"
+              action="/signin"
+              method="POST"
+            >
+              <div
+                class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
+              >
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                {% for message in messages %}
+                <div class="alert">
+                  <span
+                    class="closebtn"
+                    onclick="this.parentElement.style.display='none';"
+                    >&times;</span
+                  >
+                  {{message}}
+                </div>
+
+                {% endfor %} {% endif %} {% endwith %}
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control form-control-lg"
+                  placeholder="Enter a valid email address"
+                  required
+                />
+                <label class="form-label" for="form3Example3"
+                  >Email address</label
+                >
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-3">
+                <input
+                  type="password"
+                  name="pswd"
+                  class="form-control form-control-lg"
+                  placeholder="Enter password"
+                  required
+                />
+                <label class="form-label" for="form3Example4">Password</label>
+              </div>
+
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button
+                  class="btn btn-primary btn-lg"
+                  style="
+                    width: 100%;
+                    padding-left: 2.5rem;
+                    padding-right: 2.5rem;
+                  "
+                >
+                  Sign In
+                </button>
+
+                <!-- <p class="small fw-bold mt-2 pt-1 mb-0">
+                  Don't have an account?
+                  <a href="/signup" class="link-danger">Register</a>
+                </p> -->
+              </div>
+              <div class="simp"></div>
+              <div class="create">
+                <a href="/signup"
+                  ><button type="button" class="vis">
+                    Create New Account
+                  </button></a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <!-- MDB -->
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
+  ></script>
+</html>

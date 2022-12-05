@@ -1,0 +1,116 @@
+<!-- @format -->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Card</title>
+    <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0" />
+    <!-- <link
+      href="https://fonts.googleapis.com/css?family=Nunito:400,300"
+      rel="stylesheet"
+      type="text/css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="/static/addcard.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="nav" href="/"> Welcome {{ud.username}}, </a>
+
+      <a href="/signout"
+        ><button class="btn success">
+          <i class="fa fa-sign-out" style="font-size: 20px gap"></i>Sign Out
+        </button></a
+      >
+      <a href="/{{user_id}}/summary"
+        ><button class="btn info">Summary</button></a
+      >
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form
+            action="/{{user_id}}/{{list_id}}/{{card_id}}/edit"
+            ,
+            method="post"
+          >
+            <h1>Update Card</h1>
+
+            <fieldset>
+              <label class="required-field" for="lname">List Names:</label>
+              <select name="lname" id="lname">
+                {% for i in ld %}
+                <option value="{{i.list_id}}">{{i.title}}</option>
+                <!-- <option value="">Hitesh</option>
+                <option value="">Puru</option> -->
+                {% endfor %}
+              </select>
+
+              <label class="required-field" for="cname">Card Name:</label>
+              <input
+                type="text"
+                id="cname"
+                name="cname"
+                value="{{crd.card_title}}"
+                maxlength="50"
+                placeholder="Card Name..."
+                required
+              />
+
+              <label class="required-field" for="deadline">Deadline:</label>
+              <input
+                type="date"
+                id="deadline"
+                name="date"
+                value="{{crd.deadline}}"
+                required
+              />
+
+              <label for="cdesc">Card Description:</label>
+              <textarea
+                id="cdesc"
+                name="cdesc"
+                placeholder="Write something..."
+                style="height: 100px"
+                maxlength="100"
+                required
+              >
+              {{crd.card_desc}}</textarea
+              >
+
+              <label class="required-field">Status</label>
+              <input type="radio" value="1" name="process" required /><label
+                class="light"
+                >Incomplete</label
+              ><br />
+              <input type="radio" value="2" name="process" required /><label
+                class="light"
+                >Complete</label
+              ><br />
+            </fieldset>
+
+            <a href="/{{user_id}}/{{list_id}}/{{card_id}}/edit"
+              ><button class="submit_btn" type="submit">Update Card</button></a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

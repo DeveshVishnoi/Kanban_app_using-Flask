@@ -1,0 +1,203 @@
+body {
+  margin: 0;
+  /* overflow-y: hidden; */
+}
+.topnav{
+  background-color:#333;
+  overflow: hidden;
+  /* box-sizing: border-box; */
+  position: fixed;
+  width: 100%;
+  margin-bottom: none;
+  margin:auto
+}
+
+.topnav .nav {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 24px 16px;
+  text-decoration: none;
+  font-size: 27px;
+  /* word-spacing: 10px; */
+  font-style: fantasy;
+}
+.topnav a.split {
+  float: right;
+  /* background-color: #04AA6D; */
+  color: white;
+}
+
+/* #######################for button ########################## */
+
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 14px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  float: right;
+  margin-top:15px;
+  /* padding: 10px; */
+  border-radius: 5px;
+  /* margin-right: 10px; */
+  
+  
+}
+.btn .success {
+  margin-right:20px;
+} 
+
+.info {
+  border-color: #2196F3;
+  color: dodgerblue;
+  margin-right: 10px;
+}
+
+.info:hover {
+  background: blue;
+  color: white;
+}
+.success:hover {
+  background-color: red;
+  color: white;
+}
+.success {
+  border-color:red;
+  color: red;
+  margin-right: 10px;
+}
+
+.container {
+  /* margin-top: 100px; */
+  padding: 100px;
+}
+
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: #384047;
+}
+
+form {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color:black;
+  font-weight:17px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+  resize: none;
+}
+
+input[type="radio"] {
+  margin: 0 4px 8px 0;
+  font-weight: 17px
+}
+
+select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+.submit_btn {
+  padding: 9px 20px 9px 20px;
+  color: #fff;
+  background-color: lightblue;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid black;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+fieldset {
+  /* margin-bottom: 30px; */
+  border: none;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  /* margin-bottom: 8px; */
+  font-weight:bold; 
+}
+
+label.light {
+  font-weight: 17px;
+  display: inline;
+
+}
+
+.number {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 100%;
+}
+.required-field::after {
+  content: "*";
+  color: red;
+}
+
+@media screen and (min-width: 480px) {
+  form {
+    max-width: 480px;
+  }
+}
