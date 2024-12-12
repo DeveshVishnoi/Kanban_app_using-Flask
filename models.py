@@ -6,7 +6,7 @@ from flask import render_template, request, url_for, redirect
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kanaban.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'kanaban.sqlite3')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "abc"
 
